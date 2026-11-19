@@ -1,0 +1,1171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090509">
+<title>Happy Birthday Shristi!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #e7c17c;
+  --gold-light: #fff0cb;
+  --cream: #f8eee3;
+  --muted: #c7b9bd;
+  --burgundy: #501329;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #090509;
+  color: var(--cream);
+  font-family: "DM Sans", sans-serif;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(115,24,54,.3), transparent 60%),
+    linear-gradient(135deg,#090509,#1a0912,#090509);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  opacity: .2;
+  animation: drift 12s ease-in-out infinite alternate;
+}
+
+.orb.one {
+  width: 300px;
+  height: 300px;
+  background: #a52d50;
+  top: -100px;
+  left: -100px;
+}
+
+.orb.two {
+  width: 330px;
+  height: 330px;
+  background: #b38b45;
+  right: -140px;
+  bottom: -140px;
+  animation-delay: -5s;
+}
+
+@keyframes drift {
+  to { transform: translate(30px,-25px) scale(1.15); }
+}
+
+.sparkles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sparkle {
+  position: absolute;
+  bottom: -20px;
+  color: var(--gold);
+  opacity: 0;
+  animation: rise linear infinite;
+  text-shadow: 0 0 12px rgba(231,193,124,.8);
+}
+
+@keyframes rise {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: .55; }
+  80% { opacity: .35; }
+  100% { transform: translateY(-110vh) rotate(180deg); opacity: 0; }
+}
+
+/* PAGE */
+
+.app {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  height: 66px;
+  flex-shrink: 0;
+  padding: 0 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(231,193,124,.2);
+  background: rgba(9,5,9,.45);
+  backdrop-filter: blur(15px);
+}
+
+.logo {
+  font-family: "Cinzel",serif;
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+.header-note {
+  color: rgba(248,238,227,.65);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 22px 16px 12px;
+}
+
+footer {
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(248,238,227,.4);
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+/* SCREENS */
+
+.screen {
+  display: none;
+  width: 100%;
+  height: 100%;
+  animation: enter .55s ease both;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* BUTTONS */
+
+.button {
+  min-height: 46px;
+  padding: 12px 25px;
+  border: 1px solid var(--gold);
+  font-family: "DM Sans",sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.primary {
+  color: #1a0c10;
+  background: linear-gradient(110deg,#c99a50,#f6dfaa,#c99a50);
+  background-size: 200% auto;
+  box-shadow: 0 5px 25px rgba(231,193,124,.2);
+}
+
+.primary:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(231,193,124,.3);
+}
+
+.secondary {
+  color: var(--gold-light);
+  background: rgba(255,255,255,.03);
+  border-color: rgba(231,193,124,.45);
+}
+
+.secondary:hover:not(:disabled) {
+  background: rgba(231,193,124,.12);
+}
+
+button:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 4px;
+}
+
+/* WELCOME */
+
+.welcome {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  padding: 15px;
+}
+
+.ornament {
+  color: var(--gold);
+  font-size: 25px;
+  letter-spacing: 14px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 5px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.welcome h1 {
+  font-family: "Cinzel",serif;
+  font-size: clamp(35px,7vw,76px);
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.welcome h1 span {
+  display: block;
+  font-size: 1.15em;
+  background: linear-gradient(100deg,#c99e5c,#fff0cb,#d5a65c);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.welcome-text {
+  max-width: 530px;
+  margin: 22px auto 28px;
+  color: var(--muted);
+  font-family: "Cormorant Garamond",serif;
+  font-size: clamp(20px,3vw,27px);
+  line-height: 1.5;
+}
+
+.welcome-caption {
+  margin-top: 24px;
+  color: rgba(231,193,124,.65);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+/* MESSAGE SECTION */
+
+.message-wrap {
+  width: 100%;
+  max-width: 750px;
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.message-card {
+  position: relative;
+  flex: 0 1 auto;
+  min-height: 0;
+  padding: clamp(20px,4vw,42px);
+  text-align: center;
+  border: 1px solid rgba(231,193,124,.5);
+  background: linear-gradient(145deg,rgba(81,19,42,.92),rgba(17,8,13,.97));
+  box-shadow: 0 20px 65px rgba(0,0,0,.4),inset 0 0 40px rgba(231,193,124,.04);
+  overflow: hidden;
+}
+
+.message-card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(231,193,124,.15);
+  pointer-events: none;
+}
+
+.corner {
+  position: absolute;
+  color: var(--gold);
+  font-size: 18px;
+}
+
+.top-left { top: 12px; left: 15px; }
+.top-right { top: 12px; right: 15px; }
+.bottom-left { bottom: 12px; left: 15px; }
+.bottom-right { bottom: 12px; right: 15px; }
+
+.kicker {
+  position: relative;
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.message-title {
+  position: relative;
+  color: var(--gold-light);
+  font-family: "Cinzel",serif;
+  font-weight: 500;
+  font-size: clamp(21px,4vw,35px);
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+.title-line {
+  width: 55px;
+  height: 1px;
+  margin: 0 auto 16px;
+  background: linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+.message-text {
+  position: relative;
+  max-width: 610px;
+  max-height: 34svh;
+  overflow-y: auto;
+  margin: auto;
+  color: var(--cream);
+  font-family: "Cormorant Garamond",serif;
+  font-size: clamp(15px,2.1vw,20px);
+  line-height: 1.5;
+  white-space: pre-line;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) rgba(255,255,255,.05);
+}
+
+.signature {
+  position: relative;
+  color: var(--gold);
+  font-family: "Cinzel",serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  margin-top: 18px;
+}
+
+/* PROGRESS */
+
+.progress-area {
+  flex-shrink: 0;
+  margin-top: 15px;
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(248,238,227,.65);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.progress-track {
+  height: 3px;
+  background: rgba(231,193,124,.17);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg,#842345,#f0d08c);
+  transition: width .45s ease;
+}
+
+/* NOTE BUTTONS */
+
+.navigation {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 17px;
+  padding-bottom: 5px;
+}
+
+.navigation .button {
+  min-width: 145px;
+}
+
+.action-hint {
+  flex-shrink: 0;
+  text-align: center;
+  color: rgba(248,238,227,.55);
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  margin-top: 10px;
+}
+
+/* FINAL SCREEN */
+
+.final {
+  width: 100%;
+  max-width: 750px;
+  margin: auto;
+  text-align: center;
+  padding: 15px;
+}
+
+.cake {
+  font-size: 52px;
+  margin-bottom: 15px;
+  animation: floatCake 3s ease-in-out infinite;
+}
+
+@keyframes floatCake {
+  50% { transform: translateY(-7px); }
+}
+
+.final-ornament {
+  color: var(--gold);
+  font-size: 20px;
+  letter-spacing: 12px;
+  margin: 16px 0;
+}
+
+.final h2 {
+  font-family: "Cinzel",serif;
+  color: var(--gold);
+  font-size: clamp(33px,7vw,66px);
+  font-weight: 500;
+}
+
+.final h2 span {
+  display: block;
+  color: var(--cream);
+}
+
+.final-text {
+  max-width: 550px;
+  margin: 20px auto 25px;
+  font-family: "Cormorant Garamond",serif;
+  font-size: clamp(18px,3vw,25px);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* MOBILE */
+
+@media (max-width:600px) {
+  header {
+    height: 56px;
+    padding: 0 5%;
+  }
+
+  .logo {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .header-note {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  main {
+    padding: 14px 11px 8px;
+  }
+
+  .message-wrap {
+    margin-top: 3px;
+  }
+
+  .message-card {
+    padding: 25px 18px;
+  }
+
+  .message-title {
+    font-size: clamp(20px,5vw,27px);
+  }
+
+  .message-text {
+    font-size: clamp(14px,3.8vw,17px);
+    line-height: 1.45;
+    max-height: 37svh;
+  }
+
+  .navigation {
+    gap: 8px;
+    margin-top: 13px;
+  }
+
+  .navigation .button {
+    min-width: 0;
+    flex: 1;
+    max-width: 175px;
+    padding: 12px 8px;
+    font-size: 9px;
+    letter-spacing: .8px;
+  }
+
+  .progress-area {
+    margin-top: 12px;
+  }
+
+  .action-hint {
+    font-size: 8px;
+    margin-top: 8px;
+  }
+
+  footer {
+    height: 27px;
+  }
+}
+
+@media (max-width:380px) {
+  .message-card {
+    padding: 21px 15px;
+  }
+
+  .message-text {
+    font-size: 15px;
+  }
+
+  .navigation .button {
+    padding: 11px 5px;
+    font-size: 8px;
+  }
+}
+
+@media (max-height:650px) {
+  header { height: 48px; }
+  footer { height: 24px; }
+
+  main {
+    padding-top: 9px;
+    padding-bottom: 5px;
+  }
+
+  .message-card {
+    padding: 14px 20px;
+  }
+
+  .kicker { margin-bottom: 8px; }
+  .message-title { margin-bottom: 8px; }
+  .title-line { margin-bottom: 9px; }
+
+  .message-text {
+    max-height: 32svh;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .signature { margin-top: 9px; }
+  .progress-area { margin-top: 8px; }
+  .navigation { margin-top: 9px; }
+  .action-hint { margin-top: 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* BIRTHDAY CELEBRATION */
+
+#finalScreen {
+  position: relative;
+  overflow: hidden;
+}
+
+.celebration-rain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.celebration-piece {
+  position: absolute;
+  top: -22px;
+  width: 8px;
+  height: 15px;
+  border-radius: 2px;
+  opacity: .95;
+  animation: celebrationFall linear forwards;
+}
+
+@keyframes celebrationFall {
+  0% {
+    transform: translate3d(0,-25px,0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  100% {
+    transform: translate3d(var(--drift),110vh,0) rotate(780deg);
+    opacity: .9;
+  }
+}
+
+.final {
+  position: relative;
+  z-index: 2;
+}
+
+.final .cake {
+  font-size: clamp(100px, 20vw, 170px);
+  line-height: 1.15;
+  margin-bottom: 22px;
+  animation: cakeDrop 1.15s cubic-bezier(.18,.82,.25,1.15) both,
+             floatCake 3s ease-in-out 1.15s infinite;
+}
+
+@media (max-width: 600px) {
+  .final .cake {
+    font-size: clamp(105px, 27vw, 145px);
+  }
+}
+
+@keyframes cakeDrop {
+  0% {
+    transform: translateY(-110vh) rotate(-12deg) scale(.7);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(8px) rotate(3deg) scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+</div>
+
+<div class="sparkles" id="sparkles"></div>
+
+<div class="app">
+
+<header>
+  <div class="logo">A SPECIAL DAY</div>
+  <div class="header-note">Celebrating Shristi</div>
+</header>
+
+<main>
+
+  <!-- WELCOME -->
+
+  <section class="screen active" id="welcomeScreen">
+    <div class="welcome">
+
+      <div class="ornament">✦ ✧ ✦</div>
+
+      <div class="eyebrow">A surprise for a wonderful sister</div>
+
+      <h1>
+        Happy Birthday
+        <span>Shristi</span>
+      </h1>
+
+      <p class="welcome-text">
+        Not every family bond begins with blood.
+        Some are built with trust, respect, laughter and care.
+        Today, this little surprise is especially for you!
+      </p>
+
+      <button class="button primary" onclick="startStory()">
+        Open First Note
+      </button>
+
+      <div class="welcome-caption">
+        FROM YOUR ELDER BROTHER · WITH BEST WISHES
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INDIVIDUAL NOTES -->
+
+  <section class="screen" id="storyScreen">
+
+    <div class="message-wrap">
+
+      <div class="message-card">
+
+        <span class="corner top-left">✦</span>
+        <span class="corner top-right">✧</span>
+        <span class="corner bottom-left">✧</span>
+        <span class="corner bottom-right">✦</span>
+
+        <div class="kicker">A message from your brother</div>
+
+        <h2 class="message-title" id="messageTitle"></h2>
+
+        <div class="title-line"></div>
+
+        <p class="message-text" id="messageText"></p>
+
+        <div class="signature" id="signature"></div>
+
+      </div>
+
+      <div class="progress-area">
+        <div class="progress-meta">
+          <span>YOUR BIRTHDAY NOTES</span>
+          <span id="progressLabel">GETTING STARTED</span>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="navigation">
+
+        <button class="button secondary" id="prevButton" onclick="previousMessage()">
+          Previous Note
+        </button>
+
+        <button class="button primary" id="nextButton" onclick="nextMessage()">
+          Open Next Note
+        </button>
+
+      </div>
+
+      <div class="action-hint" id="actionHint">
+        TAP THE BUTTON TO REVEAL YOUR NEXT MESSAGE
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FINAL CELEBRATION -->
+
+  <section class="screen" id="finalScreen">
+
+    <div class="celebration-rain" id="celebrationRain" aria-hidden="true"></div>
+
+    <div class="final">
+
+      <div class="cake">🎂</div>
+
+      <div class="final-ornament">✦ ✧ ✦</div>
+
+      <h2>
+        Happy Birthday
+        <span>Shristi!</span>
+      </h2>
+
+      <p class="final-text">
+        May your life be full of happiness, confidence,
+        good health and success. May you achieve everything
+        you work hard for, meet wonderful people, and always
+        have the courage to stand up for yourself.
+
+        Keep smiling, keep learning and keep shining.
+        Your big brother is always wishing the best for you!
+      </p>
+
+      <div class="final-ornament">✦ ✧ ✦</div>
+
+      <button class="button primary" onclick="restartStory()">
+        Read Again
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  A LITTLE SURPRISE · A LOT OF GOOD WISHES
+</footer>
+
+</div>
+
+<script>
+
+/* ALL EIGHT NOTES */
+
+const messages = [
+
+{
+title: "A Sister by Bond",
+text: `Not every family bond is defined by blood. Some bonds are built through trust, respect, understanding and genuine care.
+
+I'm glad to have a sister like you in my life, Shristi.
+
+I hope our bond always stays filled with positivity, laughter and mutual respect.
+
+You will always have my best wishes as you move forward in life.`,
+signature: "Some Bonds Are Truly Special."
+},
+
+{
+title: "Keep Being Yourself",
+text: `Never change the good things that make you who you are.
+
+Your personality, your way of looking at life and your little quirks make you unique.
+
+Keep being cheerful, keep learning and never feel the need to become someone else just to impress people.
+
+The world needs more genuine people.`,
+signature: "Stay Original. Stay Confident."
+},
+
+{
+title: "Dream Big, Little Sister",
+text: `You have so much potential, and I hope you never underestimate yourself.
+
+Set big goals, work consistently and don't be afraid of challenges.
+
+There will be days when things don't go as planned. That's okay. Learn from them, get back up and keep moving.
+
+Your hard work and determination can take you a long way.`,
+signature: "Believe in Your Abilities."
+},
+
+{
+title: "A Brother's Reminder",
+text: `Always remember to value yourself.
+
+Don't compare your life with others, and don't let anyone decide your worth.
+
+Take care of your health, your happiness and your peace of mind.
+
+Celebrate your achievements, no matter how small they seem.
+
+And never hesitate to ask for help when you need it.`,
+signature: "You Matter. Never Forget That."
+},
+
+{
+title: "Choose Your Company Wisely",
+text: `One important lesson in life is to understand that not everyone who talks nicely to you has good intentions.
+
+Be friendly, be respectful and treat people well, but take your time before trusting someone completely.
+
+Observe actions more than words.
+
+Keep people around you who encourage you, respect your boundaries and genuinely want to see you succeed.`,
+signature: "Good People. Good Decisions."
+},
+
+{
+title: "A Little Advice From Your Elder Brother",
+text: `I know you love to talk, but never reveal too much about yourself.
+
+Not everyone who listens is a friend. Sometimes, without realizing it, we share personal things with people who may not have our best interests at heart.
+
+Your personal life, thoughts and secrets deserve to be protected.
+
+Be kind to everyone, but be wise about whom you trust. Listen carefully, observe people and let their actions earn your confidence.
+
+And remember, you can always count on my good wishes and support.`,
+signature: "Speak Wisely. Stay Wise."
+},
+
+{
+title: "Make Beautiful Memories",
+text: `Life is not only about studies, work, responsibilities and achievements.
+
+Make time for laughter, hobbies, family, friends and the little things that make you happy.
+
+Enjoy your journey instead of waiting for everything to become perfect.
+
+I hope this year gives you countless reasons to smile and memories that you will proudly look back on.`,
+signature: "Enjoy Every Little Moment."
+},
+
+{
+title: "A Bright Year Ahead",
+text: `Another birthday means another opportunity to grow, learn and become stronger.
+
+May this new year bring you new opportunities, good experiences, exciting adventures and success in whatever you pursue.
+
+Keep your head high, your intentions good and your confidence strong.
+
+Wishing you a wonderful year ahead, Shristi. Keep making yourself proud!`,
+signature: "Your Elder Brother's Best Wishes."
+}
+
+];
+
+let currentMessage = 0;
+
+
+/* CHANGE SCREENS */
+
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+}
+
+
+/* OPEN FIRST NOTE */
+
+function startStory() {
+  currentMessage = 0;
+  showScreen("storyScreen");
+  displayMessage();
+}
+
+
+/* DISPLAY ONE NOTE */
+
+function displayMessage() {
+
+  const message = messages[currentMessage];
+
+  const card = document.querySelector(".message-card");
+
+  card.style.animation = "none";
+  void card.offsetWidth;
+  card.style.animation = "enter .45s ease both";
+
+  document.getElementById("messageTitle").textContent =
+    message.title;
+
+  document.getElementById("messageText").textContent =
+    message.text;
+
+  document.getElementById("signature").textContent =
+    message.signature;
+
+  const progress =
+    ((currentMessage + 1) / messages.length) * 100;
+
+  document.getElementById("progressFill").style.width =
+    progress + "%";
+
+  document.getElementById("progressLabel").textContent =
+    "NOTE OPENED";
+
+  document.getElementById("prevButton").disabled =
+    currentMessage === 0;
+
+  document.getElementById("nextButton").textContent =
+    currentMessage === messages.length - 1
+      ? "Celebrate"
+      : "Open Next Note";
+
+  document.getElementById("actionHint").textContent =
+    currentMessage === messages.length - 1
+      ? "YOU HAVE REACHED YOUR FINAL BIRTHDAY NOTE"
+      : "TAP OPEN NEXT NOTE TO REVEAL ANOTHER MESSAGE";
+
+  document.getElementById("messageText").scrollTop = 0;
+}
+
+
+/* OPEN NEXT NOTE */
+
+function nextMessage() {
+
+  if (currentMessage < messages.length - 1) {
+
+    currentMessage++;
+    displayMessage();
+
+  } else {
+
+    startCelebration();
+
+  }
+
+}
+
+
+/* REOPEN PREVIOUS NOTE */
+
+function previousMessage() {
+
+  if (currentMessage > 0) {
+
+    currentMessage--;
+    displayMessage();
+
+  }
+
+}
+
+
+/* CONTINUOUS CONFETTI SHOWER */
+
+let confettiInterval = null;
+
+function dropConfettiPiece(container) {
+
+  const colors = [
+    "#e7c17c",
+    "#fff0cb",
+    "#a52d50",
+    "#f4d6a0",
+    "#ffffff",
+    "#8f3150"
+  ];
+
+  const piece = document.createElement("span");
+
+  piece.className = "celebration-piece";
+  piece.style.left = (Math.random() * 100) + "%";
+  piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+  piece.style.setProperty("--drift", ((Math.random() * 220) - 110) + "px");
+  piece.style.animationDuration = (3.5 + Math.random() * 2.5) + "s";
+  piece.style.width = (5 + Math.random() * 7) + "px";
+  piece.style.height = (9 + Math.random() * 11) + "px";
+
+  container.appendChild(piece);
+
+  piece.addEventListener("animationend", () => piece.remove(), { once: true });
+}
+
+
+function startCelebration() {
+
+  showScreen("finalScreen");
+
+  const container = document.getElementById("celebrationRain");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (confettiInterval) {
+    clearInterval(confettiInterval);
+    confettiInterval = null;
+  }
+
+  // First burst of confetti.
+  for (let i = 0; i < 90; i++) {
+
+    setTimeout(() => {
+
+      if (document.getElementById("finalScreen").classList.contains("active")) {
+        dropConfettiPiece(container);
+      }
+
+    }, i * 18);
+
+  }
+
+  // Continuous confetti until Read Again is clicked.
+  confettiInterval = setInterval(() => {
+
+    if (!document.getElementById("finalScreen").classList.contains("active")) {
+
+      clearInterval(confettiInterval);
+      confettiInterval = null;
+      return;
+
+    }
+
+    for (let i = 0; i < 5; i++) {
+      dropConfettiPiece(container);
+    }
+
+  }, 180);
+
+}
+
+
+/* START AGAIN */
+
+function restartStory() {
+
+  if (confettiInterval) {
+    clearInterval(confettiInterval);
+    confettiInterval = null;
+  }
+
+  const rain = document.getElementById("celebrationRain");
+
+  if (rain) {
+    rain.innerHTML = "";
+  }
+
+  currentMessage = 0;
+  showScreen("welcomeScreen");
+
+}
+
+
+/* FLOATING GOLD SPARKLES */
+
+function createSparkles() {
+
+  const container = document.getElementById("sparkles");
+  const symbols = ["✦","✧","·","✦"];
+
+  for (let i = 0; i < 25; i++) {
+
+    const sparkle = document.createElement("span");
+
+    sparkle.className = "sparkle";
+
+    sparkle.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    sparkle.style.left = Math.random() * 100 + "%";
+
+    sparkle.style.fontSize =
+      (8 + Math.random() * 12) + "px";
+
+    sparkle.style.animationDuration =
+      (10 + Math.random() * 14) + "s";
+
+    sparkle.style.animationDelay =
+      (Math.random() * 14) + "s";
+
+    container.appendChild(sparkle);
+
+  }
+
+}
+
+createSparkles();
+
+</script>
+
+</body>
+</html>

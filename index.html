@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090509">
-<title>Happy Birthday Shristi!</title>
+<title>A Special Birthday Surprise</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -221,6 +221,53 @@ button:disabled {
 button:focus-visible {
   outline: 2px solid var(--gold-light);
   outline-offset: 4px;
+}
+
+
+/* NAME ACCESS GATE */
+.gate {
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+  padding: 28px 22px;
+  text-align: center;
+  border: 1px solid rgba(231,193,124,.5);
+  background: linear-gradient(145deg,rgba(81,19,42,.92),rgba(17,8,13,.97));
+  box-shadow: 0 20px 65px rgba(0,0,0,.4);
+}
+.gate h1 {
+  color: var(--gold-light);
+  font-family: "Cinzel",serif;
+  font-size: clamp(25px,5vw,38px);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.gate p {
+  color: var(--muted);
+  font-family: "Cormorant Garamond",serif;
+  font-size: 21px;
+  margin-bottom: 22px;
+}
+.gate input {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  margin: 0 auto 14px;
+  padding: 12px 14px;
+  color: var(--cream);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(231,193,124,.55);
+  font: 16px "DM Sans",sans-serif;
+  text-align: center;
+  outline: none;
+}
+.gate input:focus { border-color: var(--gold-light); }
+.gate-error {
+  min-height: 22px;
+  margin-top: 14px;
+  color: #ffb6bd;
+  font-size: 13px;
+  letter-spacing: .4px;
 }
 
 /* WELCOME */
@@ -667,6 +714,20 @@ button:focus-visible {
     opacity: 1;
   }
 }
+
+/* Compact access-screen questions */
+#gateScreen .gate h1 {
+  font-size: clamp(21px, 4vw, 29px);
+  line-height: 1.3;
+}
+#bhaiyaScreen .gate h1 {
+  font-size: clamp(18px, 3.2vw, 25px);
+  line-height: 1.35;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 </style>
 </head>
 
@@ -683,14 +744,45 @@ button:focus-visible {
 
 <header>
   <div class="logo">A SPECIAL DAY</div>
-  <div class="header-note">Celebrating Shristi</div>
+  <div class="header-note">A private birthday surprise</div>
 </header>
 
 <main>
+  <!-- FAVOURITE BHAIYA CHECK -->
+  <section class="screen" id="bhaiyaScreen">
+    <div class="gate">
+      <div class="ornament">✦ ✧ ✦</div>
+      <div class="eyebrow">The final little check</div>
+      <h1>Who is the person who treats you like his own little sister?</h1>
+      <p>Answer correctly to unlock your birthday surprise.</p>
+      <form onsubmit="checkBhaiya(event)">
+        <input id="bhaiyaInput" type="text" placeholder="Your favourite Bhaiya"
+               autocomplete="off" aria-label="Your favourite Bhaiya" required>
+        <button class="button primary" type="submit">Unlock Surprise</button>
+      </form>
+      <div class="gate-error" id="bhaiyaError" role="alert" aria-live="polite"></div>
+    </div>
+  </section>
 
   <!-- WELCOME -->
 
-  <section class="screen active" id="welcomeScreen">
+  <!-- NAME ACCESS GATE -->
+  <section class="screen active" id="gateScreen">
+    <div class="gate">
+      <div class="ornament">✦ ✧ ✦</div>
+      <div class="eyebrow">A private surprise awaits</div>
+      <h1>May I know your name?</h1>
+      <p>Please enter your name to open this birthday surprise.</p>
+      <form onsubmit="checkName(event)">
+        <input id="nameInput" type="text" placeholder="Enter your name"
+               autocomplete="given-name" aria-label="Enter your name" required>
+        <button class="button primary" type="submit">Continue</button>
+      </form>
+      <div class="gate-error" id="gateError" role="alert" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="welcomeScreen">
     <div class="welcome">
 
       <div class="ornament">✦ ✧ ✦</div>
@@ -699,7 +791,7 @@ button:focus-visible {
 
       <h1>
         Happy Birthday
-        <span>Shristi</span>
+        <span id="welcomeName">You</span>
       </h1>
 
       <p class="welcome-text">
@@ -789,7 +881,7 @@ button:focus-visible {
 
       <h2>
         Happy Birthday
-        <span>Shristi!</span>
+        <span id="finalName">You!</span>
       </h2>
 
       <p class="final-text">
@@ -931,6 +1023,46 @@ signature: "Your Elder Brother's Best Wishes."
 let currentMessage = 0;
 
 
+
+/* NAME ACCESS: only the name Shristi is accepted */
+let enteredName = "";
+
+function checkName(event) {
+  event.preventDefault();
+  const field = document.getElementById("nameInput");
+  const typedName = field.value.trim();
+
+  if (typedName.toLocaleLowerCase() !== "shristi") {
+    document.getElementById("gateError").textContent =
+      "You are unable to access it.";
+    field.value = "";
+    field.focus();
+    return;
+  }
+
+  enteredName = "Shristi";
+  document.getElementById("welcomeName").textContent = enteredName;
+  document.getElementById("finalName").textContent = enteredName + "!";
+  document.getElementById("gateError").textContent = "";
+  showScreen("bhaiyaScreen");
+}
+
+/* FAVOURITE BHAIYA CHECK */
+function checkBhaiya(event) {
+  event.preventDefault();
+  const field = document.getElementById("bhaiyaInput");
+  if (field.value.trim().toLocaleLowerCase() !== "kaluaa bhaiya") {
+    document.getElementById("bhaiyaError").textContent =
+      "That answer is incorrect. You are unable to access it.";
+    field.value = "";
+    field.focus();
+    return;
+  }
+  document.getElementById("bhaiyaError").textContent = "";
+  window.birthdayAccessGranted = true;
+  showScreen("welcomeScreen");
+}
+
 /* CHANGE SCREENS */
 
 function showScreen(id) {
@@ -945,6 +1077,7 @@ function showScreen(id) {
 /* OPEN FIRST NOTE */
 
 function startStory() {
+  if (enteredName.toLocaleLowerCase() !== "shristi" || !window.birthdayAccessGranted) return;
   currentMessage = 0;
   showScreen("storyScreen");
   displayMessage();
@@ -967,7 +1100,7 @@ function displayMessage() {
     message.title;
 
   document.getElementById("messageText").textContent =
-    message.text;
+    message.text.replaceAll("Shristi", enteredName);
 
   document.getElementById("signature").textContent =
     message.signature;
@@ -1063,6 +1196,7 @@ function dropConfettiPiece(container) {
 
 function startCelebration() {
 
+  if (enteredName.toLocaleLowerCase() !== "shristi" || !window.birthdayAccessGranted) return;
   showScreen("finalScreen");
 
   const container = document.getElementById("celebrationRain");

@@ -223,8 +223,8 @@ button:focus-visible {
   outline-offset: 4px;
 }
 
-
 /* NAME ACCESS GATE */
+
 .gate {
   width: 100%;
   max-width: 520px;
@@ -235,6 +235,7 @@ button:focus-visible {
   background: linear-gradient(145deg,rgba(81,19,42,.92),rgba(17,8,13,.97));
   box-shadow: 0 20px 65px rgba(0,0,0,.4);
 }
+
 .gate h1 {
   color: var(--gold-light);
   font-family: "Cinzel",serif;
@@ -242,12 +243,14 @@ button:focus-visible {
   font-weight: 500;
   margin-bottom: 12px;
 }
+
 .gate p {
   color: var(--muted);
   font-family: "Cormorant Garamond",serif;
   font-size: 21px;
   margin-bottom: 22px;
 }
+
 .gate input {
   display: block;
   width: 100%;
@@ -261,7 +264,11 @@ button:focus-visible {
   text-align: center;
   outline: none;
 }
-.gate input:focus { border-color: var(--gold-light); }
+
+.gate input:focus {
+  border-color: var(--gold-light);
+}
+
 .gate-error {
   min-height: 22px;
   margin-top: 14px;
@@ -716,10 +723,12 @@ button:focus-visible {
 }
 
 /* Compact access-screen questions */
+
 #gateScreen .gate h1 {
   font-size: clamp(21px, 4vw, 29px);
   line-height: 1.3;
 }
+
 #bhaiyaScreen .gate h1 {
   font-size: clamp(18px, 3.2vw, 25px);
   line-height: 1.35;
@@ -748,39 +757,68 @@ button:focus-visible {
 </header>
 
 <main>
+
   <!-- FAVOURITE BHAIYA CHECK -->
+
   <section class="screen" id="bhaiyaScreen">
     <div class="gate">
       <div class="ornament">✦ ✧ ✦</div>
       <div class="eyebrow">The final little check</div>
+
       <h1>Who is the person who treats you like his own little sister?</h1>
+
       <p>Answer correctly to unlock your birthday surprise.</p>
+
       <form onsubmit="checkBhaiya(event)">
-        <input id="bhaiyaInput" type="text" placeholder="Your favourite Bhaiya"
-               autocomplete="off" aria-label="Your favourite Bhaiya" required>
-        <button class="button primary" type="submit">Unlock Surprise</button>
+        <input
+          id="bhaiyaInput"
+          type="text"
+          placeholder="Your favourite Bhaiya"
+          autocomplete="off"
+          aria-label="Your favourite Bhaiya"
+          required
+        >
+
+        <button class="button primary" type="submit">
+          Unlock Surprise
+        </button>
       </form>
+
       <div class="gate-error" id="bhaiyaError" role="alert" aria-live="polite"></div>
     </div>
   </section>
 
-  <!-- WELCOME -->
-
   <!-- NAME ACCESS GATE -->
+
   <section class="screen active" id="gateScreen">
     <div class="gate">
       <div class="ornament">✦ ✧ ✦</div>
       <div class="eyebrow">A private surprise awaits</div>
+
       <h1>May I know your name?</h1>
+
       <p>Please enter your first name to open this birthday surprise.</p>
+
       <form onsubmit="checkName(event)">
-        <input id="nameInput" type="text" placeholder="Enter your name"
-               autocomplete="given-name" aria-label="Enter your name" required>
-        <button class="button primary" type="submit">Continue</button>
+        <input
+          id="nameInput"
+          type="text"
+          placeholder="Enter your name"
+          autocomplete="given-name"
+          aria-label="Enter your name"
+          required
+        >
+
+        <button class="button primary" type="submit">
+          Continue
+        </button>
       </form>
+
       <div class="gate-error" id="gateError" role="alert" aria-live="polite"></div>
     </div>
   </section>
+
+  <!-- WELCOME -->
 
   <section class="screen" id="welcomeScreen">
     <div class="welcome">
@@ -1023,49 +1061,82 @@ signature: "Your Elder Brother's Best Wishes."
 let currentMessage = 0;
 
 
+/* NAME ACCESS */
 
-/* NAME ACCESS: only the name Shristi is accepted */
 let enteredName = "";
 
 function checkName(event) {
   event.preventDefault();
+
   const field = document.getElementById("nameInput");
   const typedName = field.value.trim();
 
   if (typedName.toLocaleLowerCase() !== "shristi") {
     document.getElementById("gateError").textContent =
       "You are unable to access it.";
+
     field.value = "";
     field.focus();
     return;
   }
 
   enteredName = "Shristi";
+
   document.getElementById("welcomeName").textContent = enteredName;
   document.getElementById("finalName").textContent = enteredName + "!";
   document.getElementById("gateError").textContent = "";
+
   showScreen("bhaiyaScreen");
 }
 
-/* FAVOURITE BHAIYA CHECK */
+
+/* FAVOURITE BHAIYA CHECK + TWO-ATTEMPT HINT */
+
+let bhaiyaWrongAttempts = 0;
+
 function checkBhaiya(event) {
   event.preventDefault();
+
   const field = document.getElementById("bhaiyaInput");
+  const error = document.getElementById("bhaiyaError");
+
   if (field.value.trim().toLocaleLowerCase() !== "kaluaa bhaiya") {
-    document.getElementById("bhaiyaError").textContent =
-      "That answer is incorrect. You are unable to access it.";
+
+    bhaiyaWrongAttempts++;
+
+    if (bhaiyaWrongAttempts === 1) {
+
+      error.textContent =
+        "That answer is incorrect. Try once again! 💗";
+
+    } else if (bhaiyaWrongAttempts === 2) {
+
+      error.textContent =
+        "Hint: Sometimes you call me K B. 😉❤️";
+
+    } else {
+
+      error.textContent =
+        "Come on! Think again, little sister. You know your Bhaiya! 💗";
+
+    }
+
     field.value = "";
     field.focus();
     return;
   }
-  document.getElementById("bhaiyaError").textContent = "";
+
+  error.textContent = "";
   window.birthdayAccessGranted = true;
+
   showScreen("welcomeScreen");
 }
+
 
 /* CHANGE SCREENS */
 
 function showScreen(id) {
+
   document.querySelectorAll(".screen").forEach(screen => {
     screen.classList.remove("active");
   });
@@ -1077,8 +1148,12 @@ function showScreen(id) {
 /* OPEN FIRST NOTE */
 
 function startStory() {
-  if (enteredName.toLocaleLowerCase() !== "shristi" || !window.birthdayAccessGranted) return;
+
+  if (enteredName.toLocaleLowerCase() !== "shristi" ||
+      !window.birthdayAccessGranted) return;
+
   currentMessage = 0;
+
   showScreen("storyScreen");
   displayMessage();
 }
@@ -1182,21 +1257,35 @@ function dropConfettiPiece(container) {
 
   piece.className = "celebration-piece";
   piece.style.left = (Math.random() * 100) + "%";
-  piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-  piece.style.setProperty("--drift", ((Math.random() * 220) - 110) + "px");
-  piece.style.animationDuration = (3.5 + Math.random() * 2.5) + "s";
+  piece.style.background =
+    colors[Math.floor(Math.random() * colors.length)];
+
+  piece.style.setProperty(
+    "--drift",
+    ((Math.random() * 220) - 110) + "px"
+  );
+
+  piece.style.animationDuration =
+    (3.5 + Math.random() * 2.5) + "s";
+
   piece.style.width = (5 + Math.random() * 7) + "px";
   piece.style.height = (9 + Math.random() * 11) + "px";
 
   container.appendChild(piece);
 
-  piece.addEventListener("animationend", () => piece.remove(), { once: true });
+  piece.addEventListener(
+    "animationend",
+    () => piece.remove(),
+    { once: true }
+  );
 }
 
 
 function startCelebration() {
 
-  if (enteredName.toLocaleLowerCase() !== "shristi" || !window.birthdayAccessGranted) return;
+  if (enteredName.toLocaleLowerCase() !== "shristi" ||
+      !window.birthdayAccessGranted) return;
+
   showScreen("finalScreen");
 
   const container = document.getElementById("celebrationRain");
@@ -1211,11 +1300,15 @@ function startCelebration() {
   }
 
   // First burst of confetti.
+
   for (let i = 0; i < 90; i++) {
 
     setTimeout(() => {
 
-      if (document.getElementById("finalScreen").classList.contains("active")) {
+      if (
+        document.getElementById("finalScreen")
+          .classList.contains("active")
+      ) {
         dropConfettiPiece(container);
       }
 
@@ -1224,9 +1317,13 @@ function startCelebration() {
   }
 
   // Continuous confetti until Read Again is clicked.
+
   confettiInterval = setInterval(() => {
 
-    if (!document.getElementById("finalScreen").classList.contains("active")) {
+    if (
+      !document.getElementById("finalScreen")
+        .classList.contains("active")
+    ) {
 
       clearInterval(confettiInterval);
       confettiInterval = null;
@@ -1259,8 +1356,8 @@ function restartStory() {
   }
 
   currentMessage = 0;
-  showScreen("welcomeScreen");
 
+  showScreen("welcomeScreen");
 }
 
 
@@ -1269,7 +1366,7 @@ function restartStory() {
 function createSparkles() {
 
   const container = document.getElementById("sparkles");
-  const symbols = ["✦","✧","·","✦"];
+  const symbols = ["✦", "✧", "·", "✦"];
 
   for (let i = 0; i < 25; i++) {
 
